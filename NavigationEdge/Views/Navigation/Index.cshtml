@@ -6,11 +6,10 @@
     <title>Index</title>
 </head>
 <body>
-    <div id="content">
-        @Html.Raw(Model.Content)
-    </div>
+    <div id="content">@Html.Raw(Model.Content)</div>
+    <script src="/StateInfo.js"></script>
     <script>
-        @Html.Raw(Model.Props)
+        StateInfo.register(@Html.Raw(Model.Props));
     </script>
 </body>
 </html>
