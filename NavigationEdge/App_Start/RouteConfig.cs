@@ -13,6 +13,18 @@ namespace NavigationEdge
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+			routes.MapRoute(
+				name: "searchPeople",
+				url: "data/people/{pageNumber}",
+				defaults: new { controller = "Data", action = "SearchPeople" }
+			);
+
+			routes.MapRoute(
+				name: "getPerson",
+				url: "data/person/{id}",
+				defaults: new { controller = "Data", action = "GetPerson" }
+			);
+
             routes.MapRoute(
                 name: "Default",
                 url: "{*url}",

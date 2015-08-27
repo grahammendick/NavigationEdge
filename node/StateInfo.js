@@ -36,7 +36,7 @@ function registerNavigators() {
 	}
 	
 	states.listing.navigated = function(data, asyncData) {
-		render({ people: asyncData});
+		render(asyncData);
 	}
 
 	states.details.navigating = function(data, url, navigate) {
@@ -46,7 +46,7 @@ function registerNavigators() {
 	}
 	
 	states.details.navigated = function(data, asyncData) {
-		render({ person: asyncData });
+		render(asyncData);
 	}
 }
 
