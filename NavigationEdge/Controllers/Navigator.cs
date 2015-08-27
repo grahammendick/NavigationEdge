@@ -32,7 +32,7 @@ namespace NavigationEdge.Controllers
 			StateInfo.register();
 			return function (data, callback) {
 				Navigation.StateController.navigateLink(data.url);
-				var component = React.createElement(NavigationShared.getComponent(), data.props);
+				var component = React.createElement(Navigation.StateContext.state.component, data.props);
 				callback(null, React.renderToString(component));
 			}
 		");
@@ -42,7 +42,7 @@ namespace NavigationEdge.Controllers
 			return getStateContext(url);
 		}
 
-		public static Task<object> Render(string url, dynamic props)
+		public static Task<object> Render(string url, object props)
 		{
 			dynamic data = new ExpandoObject();
 			data.url = url;
