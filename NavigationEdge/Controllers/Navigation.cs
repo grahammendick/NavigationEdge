@@ -18,7 +18,7 @@ namespace NavigationEdge.Controllers
 			return function (data, callback) {
 				Navigation.StateController.navigateLink(data);
 				callback(null, { 
-					provider: Navigation.StateContext.state.provider,
+					propsProvider: Navigation.StateContext.state.propsProvider,
 					data: Navigation.StateContext.data 
 				});
 			}

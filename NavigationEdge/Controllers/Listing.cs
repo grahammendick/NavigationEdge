@@ -8,8 +8,9 @@ namespace NavigationEdge.Controllers
 {
 	public class Listing : IPropsProvider
 	{
-		public void SetProps(Dictionary<string, object> props, dynamic data)
+		public IDictionary<string, object> GetProps(dynamic data)
 		{
+			var props = new Dictionary<string, object>();
 			props["people"] = new Data().SearchPeople((int)data.pageNumber).Select(p => new
 			{
 				id = p.Id,
@@ -18,6 +19,7 @@ namespace NavigationEdge.Controllers
 				email = p.Email,
 				phone = p.Phone,
 			});
+			return props;
 		}
 	}
 }

@@ -8,6 +8,6 @@ namespace NavigationEdge.Controllers
 {
 	interface IPropsProvider
 	{
-		void SetProps(Dictionary<string, object> props, dynamic data);
+		IDictionary<string, object> GetProps(dynamic data);
 	}
 }
