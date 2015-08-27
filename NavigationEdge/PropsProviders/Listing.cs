@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace NavigationEdge.Controllers
+namespace NavigationEdge.PropsProvider
 {
 	public class Listing : IPropsProvider
 	{
