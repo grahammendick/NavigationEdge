@@ -13,7 +13,7 @@ namespace NavigationEdge.Controllers
         // GET: Navigation
 		public async Task<ActionResult> Index()
         {
-			dynamic stateContext = await Navigator.GetStateContext(this.Request.Url.PathAndQuery);
+			dynamic stateContext = await Navigation.GetContext(this.Request.Url.PathAndQuery);
 			var state = stateContext.state;
 			var data = stateContext.data;
 			var pageNumber = data.pageNumber;
@@ -21,7 +21,7 @@ namespace NavigationEdge.Controllers
 			people.Add(new Person { Id = 1, name = "test " });
 			var dict = new Dictionary<string, object>();
 			dict["people"] = people;
-			var content = await Navigator.Render(this.Request.Url.PathAndQuery, dict);
+			var content = await React.Render(this.Request.Url.PathAndQuery, dict);
 			return View(content);
         }
     }
