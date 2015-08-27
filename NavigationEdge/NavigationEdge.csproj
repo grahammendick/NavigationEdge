@@ -102,12 +102,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\IPropsProvider.cs" />
+    <Compile Include="Controllers\Listing.cs" />
     <Compile Include="Controllers\Navigation.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controllers\React.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Data.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

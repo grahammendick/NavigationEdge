@@ -14,14 +14,12 @@ namespace NavigationEdge.Controllers
 		public async Task<ActionResult> Index()
         {
 			dynamic stateContext = await Navigation.GetContext(this.Request.Url.PathAndQuery);
-			var state = stateContext.state;
+			var provider = (string) stateContext.provider;
 			var data = stateContext.data;
-			var pageNumber = data.pageNumber;
-			var people = new List<Person>();
-			people.Add(new Person { Id = 1, name = "test " });
-			var dict = new Dictionary<string, object>();
-			dict["people"] = people;
-			var content = await React.Render(this.Request.Url.PathAndQuery, dict);
+			var propsProvider = (IPropsProvider) Activator.CreateInstance(Type.GetType("NavigationEdge.Controllers." + provider));
+			var props = new Dictionary<string, object>();
+			propsProvider.SetProps(props, data);
+			var content = await React.Render(this.Request.Url.PathAndQuery, props);
 			return View(content);
         }
     }
