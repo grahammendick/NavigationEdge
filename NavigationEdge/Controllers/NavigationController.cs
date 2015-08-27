@@ -1,10 +1,7 @@
 ﻿using NavigationEdge.Models;
 using NavigationEdge.PropsProvider;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
@@ -12,7 +9,6 @@ namespace NavigationEdge.Controllers
 {
     public class NavigationController : Controller
     {
-        // GET: Navigation
 		public async Task<ActionResult> Index()
         {
 			dynamic stateContext = await Navigation.GetContext(this.Request.Url.PathAndQuery);

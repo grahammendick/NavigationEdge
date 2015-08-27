@@ -1,9 +1,4 @@
-﻿using NavigationEdge.Models;
-using NavigationEdge.PropsProvider;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using NavigationEdge.PropsProvider;
 using System.Web.Mvc;
 
 namespace NavigationEdge.Controllers
