@@ -102,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Models\Component.cs" />
     <Compile Include="PropsProviders\Details.cs" />
     <Compile Include="PropsProviders\IPropsProvider.cs" />
     <Compile Include="PropsProviders\Listing.cs" />

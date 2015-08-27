@@ -1,4 +1,4 @@
-﻿@model string
+﻿@model NavigationEdge.Models.Component
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +7,10 @@
 </head>
 <body>
     <div id="content">
-        @Html.Raw(Model)
+        @Html.Raw(Model.Content)
     </div>
+    <script>
+        @Html.Raw(Model.Props)
+    </script>
 </body>
 </html>
