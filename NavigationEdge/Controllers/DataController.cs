@@ -7,12 +7,12 @@ namespace NavigationEdge.Controllers
     {
 		public JsonResult SearchPeople(int pageNumber)
 		{
-			return this.Json(new Listing().GetProps(new { pageNumber = pageNumber }), JsonRequestBehavior.AllowGet);
+			return Json(new Listing().GetProps(new { pageNumber = pageNumber }), JsonRequestBehavior.AllowGet);
 		}
 
 		public JsonResult GetPerson(int id)
 		{
-			return this.Json(new Details().GetProps(new { id = id }), JsonRequestBehavior.AllowGet);
+			return Json(new Details().GetProps(new { id = id }), JsonRequestBehavior.AllowGet);
 		}
 	}
 }
