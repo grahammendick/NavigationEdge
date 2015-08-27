@@ -102,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\Details.cs" />
     <Compile Include="Controllers\IPropsProvider.cs" />
     <Compile Include="Controllers\Listing.cs" />
     <Compile Include="Controllers\Navigation.cs" />

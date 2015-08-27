@@ -28,5 +28,10 @@ namespace NavigationEdge.Models
 		{
 			return Task.FromResult(people.Skip((pageNumber - 1) * 10).Take(10));
 		}
+
+		public Task<Person> GetPerson(int id)
+		{
+			return Task.FromResult(people.First(p => p.Id == id));
+		}
 	}
 }
