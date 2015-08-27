@@ -13,8 +13,7 @@ namespace NavigationEdge.PropsProvider
 		{
 			var props = new Dictionary<string, object>();
 			var person = new Data().GetPerson((int)data.id);
-			props["person"] = new
-			{
+			props["person"] = new {
 				id = person.Id,
 				name = person.Name,
 				dateOfBirth = person.DateOfBirth,
