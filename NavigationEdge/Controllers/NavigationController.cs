@@ -15,7 +15,7 @@ namespace NavigationEdge.Controllers
         {
 			dynamic stateContext = await Navigation.GetContext(this.Request.Url.PathAndQuery);
 			var propsProvider = (IPropsProvider) Activator.CreateInstance(Type.GetType("NavigationEdge.Controllers." + (string)stateContext.propsProvider));
-			var props = propsProvider.GetProps(stateContext.data);
+			var props = await propsProvider.GetPropsAsync(stateContext.data);
 			var content = await React.Render(this.Request.Url.PathAndQuery, props);
 			return View((object) content);
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace NavigationEdge.Models
@@ -23,9 +24,9 @@ namespace NavigationEdge.Models
 			new Person{ Id = 12, Name = "Emelie Lueilwitz", DateOfBirth = "01/12/1980", Email = "emelie@navigation.com", Phone = "555 0012" }
 		};
 
-		public IEnumerable<Person> SearchPeople(int pageNumber)
+		public Task<IEnumerable<Person>> SearchPeople(int pageNumber)
 		{
-			return people.Skip((pageNumber - 1) * 10).Take(10);
+			return Task.FromResult(people.Skip((pageNumber - 1) * 10).Take(10));
 		}
 	}
 }
