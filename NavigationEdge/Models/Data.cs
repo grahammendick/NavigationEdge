@@ -24,14 +24,14 @@ namespace NavigationEdge.Models
 			new Person{ Id = 12, Name = "Emelie Lueilwitz", DateOfBirth = "01/12/1980", Email = "emelie@navigation.com", Phone = "555 0012" }
 		};
 
-		public Task<IEnumerable<Person>> SearchPeople(int pageNumber)
+		public IEnumerable<Person> SearchPeople(int pageNumber)
 		{
-			return Task.FromResult(people.Skip((pageNumber - 1) * 10).Take(10));
+			return people.Skip((pageNumber - 1) * 10).Take(10);
 		}
 
-		public Task<Person> GetPerson(int id)
+		public Person GetPerson(int id)
 		{
-			return Task.FromResult(people.First(p => p.Id == id));
+			return people.First(p => p.Id == id);
 		}
 	}
 }

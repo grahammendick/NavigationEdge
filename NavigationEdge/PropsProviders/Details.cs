@@ -9,10 +9,10 @@ namespace NavigationEdge.PropsProvider
 {
 	public class Details : IPropsProvider
 	{
-		public async Task<IDictionary<string, object>> GetPropsAsync(dynamic data)
+		public IDictionary<string, object> GetProps(dynamic data)
 		{
 			var props = new Dictionary<string, object>();
-			var person = await new Data().GetPerson((int)data.id);
+			var person = new Data().GetPerson((int)data.id);
 			props["person"] = new
 			{
 				id = person.Id,

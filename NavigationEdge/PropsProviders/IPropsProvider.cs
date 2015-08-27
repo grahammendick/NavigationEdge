@@ -8,6 +8,6 @@ namespace NavigationEdge.PropsProvider
 {
 	interface IPropsProvider
 	{
-		Task<IDictionary<string, object>> GetPropsAsync(dynamic data);
+		IDictionary<string, object> GetProps(dynamic data);
 	}
 }
