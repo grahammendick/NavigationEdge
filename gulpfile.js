@@ -5,6 +5,6 @@ var source = require('vinyl-source-stream');
 gulp.task('build', function(){
 	return browserify('./node/StateInfo.js', { standalone: 'StateInfo'})
 		.bundle()
-		.pipe(source('StateInfo.js'))
+		.pipe(source('app.js'))
 		.pipe(gulp.dest('./NavigationEdge'))
 });
