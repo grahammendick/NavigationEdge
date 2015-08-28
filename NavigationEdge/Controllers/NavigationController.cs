@@ -23,30 +23,14 @@ namespace NavigationEdge.Controllers
 		public IDictionary<string, object> SearchPeople(dynamic data)
 		{
 			var props = new Dictionary<string, object>();
-			var people = new Data().SearchPeople((int)data.pageNumber);
-			props["people"] = people.Select(p => new
-			{
-				id = p.Id,
-				name = p.Name,
-				dateOfBirth = p.DateOfBirth,
-				email = p.Email,
-				phone = p.Phone,
-			});
+			props["people"] = new Data().SearchPeople((int)data.pageNumber);
 			return props;
 		}
 
 		public IDictionary<string, object> GetPerson(dynamic data)
 		{
 			var props = new Dictionary<string, object>();
-			var person = new Data().GetPerson((int)data.id);
-			props["person"] = new
-			{
-				id = person.Id,
-				name = person.Name,
-				dateOfBirth = person.DateOfBirth,
-				email = person.Email,
-				phone = person.Phone,
-			};
+			props["person"] = new Data().GetPerson((int)data.id);
 			return props;
 		}
     }

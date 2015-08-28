@@ -10,8 +10,8 @@ exports.Listing = React.createClass({
 		var people = this.props.people.map(function (person) {
 	        return (
                 React.createElement("tr", null, 
-                    React.createElement("td", null, React.createElement(NavigationLink, {action: "select", toData: { id: person.id}}, person.name)), 
-                    React.createElement("td", null, person.dateOfBirth)
+                    React.createElement("td", null, React.createElement(NavigationLink, {action: "select", toData: { id: person.Id}}, person.Name)), 
+                    React.createElement("td", null, person.DateOfBirth)
                 )
             );
         });
@@ -43,13 +43,13 @@ exports.Details = React.createClass({
             React.createElement("div", {id: "details"}, 
                 React.createElement(NavigationBackLink, {distance: 1}, "People"), 
                 React.createElement("div", {id: "info"}, 
-                    React.createElement("h2", null, person.name), 
+                    React.createElement("h2", null, person.Name), 
                     React.createElement("div", {className: "label"}, "Date of Birth"), 
-                    React.createElement("div", null, person.dateOfBirth), 
+                    React.createElement("div", null, person.DateOfBirth), 
                     React.createElement("div", {className: "label"}, "Email"), 
-                    React.createElement("div", null, person.email), 
+                    React.createElement("div", null, person.Email), 
                     React.createElement("div", {className: "label"}, "Phone"), 
-                    React.createElement("div", null, person.phone)
+                    React.createElement("div", null, person.Phone)
                 )
             )
         );
@@ -66,9 +66,9 @@ Navigation.settings.historyManager = new Navigation.HTML5HistoryManager();
 exports.register = function(props) {
 	Navigation.StateInfoConfig.build([
 		{ key: 'masterDetails', initial: 'listing', states: [
-			{ key: 'listing', route: '{pageNumber}', propsProvider: "Listing", component: Component.Listing, defaults: { pageNumber: 1 }, trackCrumbTrail: false, transitions: [
+			{ key: 'listing', route: '{pageNumber}', action: "SearchPeople", component: Component.Listing, defaults: { pageNumber: 1 }, trackCrumbTrail: false, transitions: [
 				{ key: 'select', to: 'details' }]},
-			{ key: 'details', route: 'person/{id}', propsProvider: "Details", component: Component.Details, defaults: { id: 0 } }]
+			{ key: 'details', route: 'person/{id}', action: "GetPerson", component: Component.Details, defaults: { id: 0 } }]
 		}
 	]);
 	if (props) {
@@ -109,7 +109,7 @@ function getData(url, callback) {
 		}
 	};
 	req.open('get', url);
-	req.setRequestHeader('Accept', 'application/json')
+	req.setRequestHeader('Accept', 'application/json');
 	req.send(null);
 }
 },{"./Component":1,"navigation":39,"react":194}],3:[function(require,module,exports){

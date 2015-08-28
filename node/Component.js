@@ -9,8 +9,8 @@ exports.Listing = React.createClass({
 		var people = this.props.people.map(function (person) {
 	        return (
                 React.createElement("tr", null, 
-                    React.createElement("td", null, React.createElement(NavigationLink, {action: "select", toData: { id: person.id}}, person.name)), 
-                    React.createElement("td", null, person.dateOfBirth)
+                    React.createElement("td", null, React.createElement(NavigationLink, {action: "select", toData: { id: person.Id}}, person.Name)), 
+                    React.createElement("td", null, person.DateOfBirth)
                 )
             );
         });
@@ -42,13 +42,13 @@ exports.Details = React.createClass({
             React.createElement("div", {id: "details"}, 
                 React.createElement(NavigationBackLink, {distance: 1}, "People"), 
                 React.createElement("div", {id: "info"}, 
-                    React.createElement("h2", null, person.name), 
+                    React.createElement("h2", null, person.Name), 
                     React.createElement("div", {className: "label"}, "Date of Birth"), 
-                    React.createElement("div", null, person.dateOfBirth), 
+                    React.createElement("div", null, person.DateOfBirth), 
                     React.createElement("div", {className: "label"}, "Email"), 
-                    React.createElement("div", null, person.email), 
+                    React.createElement("div", null, person.Email), 
                     React.createElement("div", {className: "label"}, "Phone"), 
-                    React.createElement("div", null, person.phone)
+                    React.createElement("div", null, person.Phone)
                 )
             )
         );
