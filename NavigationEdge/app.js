@@ -91,9 +91,15 @@ function registerNavigators() {
 	for(var key in states) {
 		var state = states[key];
 		state.navigating = function(data, url, navigate) {
-			getData(url, function(data){
-				navigate(data);
-			})
+			var req = new XMLHttpRequest();
+			req.onreadystatechange = function() {
+				if (req.readyState === 4) {
+					navigate(JSON.parse(req.responseText));
+				}
+			};
+			req.open('get', url);
+			req.setRequestHeader('Accept', 'application/json');
+			req.send(null);
 		}
 		state.navigated = function(data, asyncData) {
 			render(asyncData);
@@ -101,17 +107,6 @@ function registerNavigators() {
 	}
 }
 
-function getData(url, callback) {
-	var req = new XMLHttpRequest();
-	req.onreadystatechange = function() {
-		if (req.readyState === 4){
-			callback(JSON.parse(req.responseText));
-		}
-	};
-	req.open('get', url);
-	req.setRequestHeader('Accept', 'application/json');
-	req.send(null);
-}
 },{"./Component":1,"navigation":39,"react":194}],3:[function(require,module,exports){
 // shim for using process in browser
 
