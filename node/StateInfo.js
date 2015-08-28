@@ -30,7 +30,7 @@ function render(props) {
 function registerNavigators() {
 	var states = Navigation.StateInfoConfig.dialogs.masterDetails.states;
 	states.listing.navigating = function(data, url, navigate) {
-		getData('/data/people/' + data.pageNumber, function(data){
+		getData(url, function(data){
 			navigate(data);
 		})
 	}
@@ -40,7 +40,7 @@ function registerNavigators() {
 	}
 
 	states.details.navigating = function(data, url, navigate) {
-		getData('/data/person/' + data.id, function(data){
+		getData(url, function(data){
 			navigate(data);
 		})
 	}
@@ -58,5 +58,6 @@ function getData(url, callback) {
 		}
 	};
 	req.open('get', url);
+	req.setRequestHeader('Accept', 'application/json')
 	req.send(null);
 }

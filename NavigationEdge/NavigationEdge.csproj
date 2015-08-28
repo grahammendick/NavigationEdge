@@ -103,7 +103,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\DataController.cs" />
     <Compile Include="Models\Component.cs" />
     <Compile Include="PropsProviders\Details.cs" />
     <Compile Include="PropsProviders\IPropsProvider.cs" />
