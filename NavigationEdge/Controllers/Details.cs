@@ -1,7 +1,7 @@
 ﻿using NavigationEdge.Models;
 using System.Collections.Generic;
 
-namespace NavigationEdge.PropsProvider
+namespace NavigationEdge.Controllers
 {
 	public class Details : IPropsProvider
 	{

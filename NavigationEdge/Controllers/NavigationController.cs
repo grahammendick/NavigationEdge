@@ -1,5 +1,4 @@
 ﻿using NavigationEdge.Models;
-using NavigationEdge.PropsProvider;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,7 +12,7 @@ namespace NavigationEdge.Controllers
 		public async Task<ActionResult> Index()
         {
 			dynamic stateContext = await Navigation.GetContext(Request.Url.PathAndQuery);
-			var propsProviderType = Type.GetType("NavigationEdge.PropsProvider." + (string)stateContext.propsProvider);
+			var propsProviderType = Type.GetType("NavigationEdge.Controllers." + (string)stateContext.propsProvider);
 			var propsProvider = (IPropsProvider)Activator.CreateInstance(propsProviderType);
 			var props = propsProvider.GetProps(stateContext.data);
 			var content = await React.Render(Request.Url.PathAndQuery, props);

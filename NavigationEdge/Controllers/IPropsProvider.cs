@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace NavigationEdge.PropsProvider
+namespace NavigationEdge.Controllers
 {
 	interface IPropsProvider
 	{

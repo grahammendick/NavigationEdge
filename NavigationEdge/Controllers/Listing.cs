@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NavigationEdge.PropsProvider
+namespace NavigationEdge.Controllers
 {
 	public class Listing : IPropsProvider
 	{
