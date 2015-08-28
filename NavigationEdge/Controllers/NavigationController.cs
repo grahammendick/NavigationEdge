@@ -13,11 +13,15 @@ namespace NavigationEdge.Controllers
 			var propsMethod = this.GetType().GetMethod((string)stateContext.action);
 			var props = new Dictionary<string, object>();
 			propsMethod.Invoke(this, new object[] { props, stateContext.data });
-			var content = (string) await React.Render(Request.Url.PathAndQuery, props);
 			if (Request.ContentType == "application/json")
+			{
 				return Json(props, JsonRequestBehavior.AllowGet);
+			}
 			else
-				return View(new Component{ Props = props, Content = content });
+			{
+				var content = (string) await React.Render(Request.Url.PathAndQuery, props);
+				return View(new Component { Props = props, Content = content });
+			}
         }
 
 		public void SearchPeople(Dictionary<string, object> props, dynamic data)
