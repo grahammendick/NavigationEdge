@@ -1,6 +1,5 @@
 ﻿using NavigationEdge.Models;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -15,7 +14,7 @@ namespace NavigationEdge.Controllers
 			var props = new Dictionary<string, object>();
 			propsMethod.Invoke(this, new object[] { props, stateContext.data });
 			var content = (string) await React.Render(Request.Url.PathAndQuery, props);
-			if (Request.AcceptTypes.Contains("application/json"))
+			if (Request.ContentType == "application/json")
 				return Json(props, JsonRequestBehavior.AllowGet);
 			else
 				return View(new Component{ Props = props, Content = content });

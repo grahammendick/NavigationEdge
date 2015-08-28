@@ -98,7 +98,7 @@ function registerNavigators() {
 				}
 			};
 			req.open('get', url);
-			req.setRequestHeader('Accept', 'application/json');
+			req.setRequestHeader('Content-Type', 'application/json');
 			req.send(null);
 		}
 		state.navigated = function(data, asyncData) {
