@@ -8,7 +8,7 @@
     <div id="content">@Html.Raw(Model.Content)</div>
     <script src="/app.js"></script>
     <script>
-        StateInfo.register(@Html.Raw(Model.Props));
+        StateInfo.register(@Html.Raw(new JavaScriptSerializer().Serialize(Model.Props)));
     </script>
 </body>
 </html>
