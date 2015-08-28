@@ -1,5 +1,6 @@
 ﻿using NavigationEdge.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -12,14 +13,43 @@ namespace NavigationEdge.Controllers
 		public async Task<ActionResult> Index()
         {
 			dynamic stateContext = await Navigation.GetContext(Request.Url.PathAndQuery);
-			var propsProviderType = Type.GetType("NavigationEdge.Controllers." + (string)stateContext.propsProvider);
-			var propsProvider = (IPropsProvider)Activator.CreateInstance(propsProviderType);
-			var props = propsProvider.GetProps(stateContext.data);
-			var content = await React.Render(Request.Url.PathAndQuery, props);
+			var propsMethod = this.GetType().GetMethod((string)stateContext.action);
+			var props = (IDictionary<string, object>) propsMethod.Invoke(this, new object[] { stateContext.data });
+			var content = (string) await React.Render(Request.Url.PathAndQuery, props);
 			if (Request.AcceptTypes.Contains("application/json"))
 				return Json(props, JsonRequestBehavior.AllowGet);
 			else
 				return View(new Component{ Props = props, Content = content });
         }
+
+		public IDictionary<string, object> SearchPeople(dynamic data)
+		{
+			var props = new Dictionary<string, object>();
+			var people = new Data().SearchPeople((int)data.pageNumber);
+			props["people"] = people.Select(p => new
+			{
+				id = p.Id,
+				name = p.Name,
+				dateOfBirth = p.DateOfBirth,
+				email = p.Email,
+				phone = p.Phone,
+			});
+			return props;
+		}
+
+		public IDictionary<string, object> GetPerson(dynamic data)
+		{
+			var props = new Dictionary<string, object>();
+			var person = new Data().GetPerson((int)data.id);
+			props["person"] = new
+			{
+				id = person.Id,
+				name = person.Name,
+				dateOfBirth = person.DateOfBirth,
+				email = person.Email,
+				phone = person.Phone,
+			};
+			return props;
+		}
     }
 }
