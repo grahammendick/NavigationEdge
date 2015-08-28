@@ -12,7 +12,8 @@ namespace NavigationEdge.Controllers
         {
 			dynamic stateContext = await Navigation.GetContext(Request.Url.PathAndQuery);
 			var propsMethod = this.GetType().GetMethod((string)stateContext.action);
-			var props = (IDictionary<string, object>) propsMethod.Invoke(this, new object[] { stateContext.data });
+			var props = new Dictionary<string, object>();
+			propsMethod.Invoke(this, new object[] { props, stateContext.data });
 			var content = (string) await React.Render(Request.Url.PathAndQuery, props);
 			if (Request.AcceptTypes.Contains("application/json"))
 				return Json(props, JsonRequestBehavior.AllowGet);
@@ -20,18 +21,14 @@ namespace NavigationEdge.Controllers
 				return View(new Component{ Props = props, Content = content });
         }
 
-		public IDictionary<string, object> SearchPeople(dynamic data)
+		public void SearchPeople(Dictionary<string, object> props, dynamic data)
 		{
-			var props = new Dictionary<string, object>();
 			props["people"] = new Data().SearchPeople((int)data.pageNumber);
-			return props;
 		}
 
-		public IDictionary<string, object> GetPerson(dynamic data)
+		public void GetPerson(Dictionary<string, object> props, dynamic data)
 		{
-			var props = new Dictionary<string, object>();
 			props["person"] = new Data().GetPerson((int)data.id);
-			return props;
 		}
     }
 }
