@@ -50,6 +50,6 @@ function getData(url, callback) {
 		}
 	};
 	req.open('get', url);
-	req.setRequestHeader('Accept', 'application/json')
+	req.setRequestHeader('Accept', 'application/json');
 	req.send(null);
 }
