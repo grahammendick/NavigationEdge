@@ -22,10 +22,7 @@ namespace NavigationEdge.Controllers
 
 		public static Task<object> Render(string url, object props)
 		{
-			dynamic data = new ExpandoObject();
-			data.url = url;
-			data.props = props;
-			return render(data);
+			return render(new { url = url, props = props });
 		}
 	}
 }
