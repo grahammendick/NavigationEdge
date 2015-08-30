@@ -15,6 +15,9 @@ namespace NavigationEdge.Controllers
 			propsMethod.Invoke(this, new object[] { props, stateContext.data });
 			if (Request.ContentType == "application/json")
 			{
+				Response.AppendHeader("Pragma", "no-cache");
+				Response.AppendHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+				Response.AppendHeader("Expires", "0");
 				return Json(props, JsonRequestBehavior.AllowGet);
 			}
 			else
