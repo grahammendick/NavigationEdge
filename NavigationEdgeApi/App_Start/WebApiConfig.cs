@@ -15,7 +15,7 @@ namespace NavigationEdgeApi
             // Web API configuration and services
 			config.MessageHandlers.Add(new MessageHandler());
 			config.Services.Replace(typeof(IHttpControllerSelector), new ControllerSelector());
-			config.Services.Insert(typeof(ValueProviderFactory), 0, new DataValueProviderFactory());
+			config.Services.Add(typeof(ValueProviderFactory), new DataValueProviderFactory());
 
             // Web API routes
             config.MapHttpAttributeRoutes();
