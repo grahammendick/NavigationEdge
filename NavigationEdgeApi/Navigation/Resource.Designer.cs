@@ -65,6 +65,7 @@ namespace NavigationEdgeApi.Navigation {
         ///&lt;html&gt;
         ///&lt;head&gt;
         ///    &lt;title&gt;Navigation Edge&lt;/title&gt;
+        ///    &lt;link rel=&quot;stylesheet&quot; href=&quot;/app.css&quot;&gt;
         ///&lt;/head&gt;
         ///&lt;body&gt;
         ///    &lt;div id=&quot;header&quot;&gt;
@@ -72,7 +73,7 @@ namespace NavigationEdgeApi.Navigation {
         ///        &lt;/div&gt;
         ///    &lt;/div&gt;
         ///    &lt;h1&gt;Navigation Edge&lt;/h1&gt;
-        ///    &lt;p&gt;This is an isomorphic web app built using the &lt;a href=&quot;http://grahammendick.github.io/navigation/&quot;&gt;Navigation router&lt;/a&gt; and &lt;a href=&quot;http://tjanczuk.github.io/edge/&quot;&gt;Edge.js&lt;/a&gt;. The UI is written in React and the server and data layer are in C#. It&apos;s isomorphic because it can run on both the server and the c [rest of string was truncated]&quot;;.
+        ///    &lt;p&gt;This is an isomorphic web app built using the &lt;a href=&quot;http://grahammendick.github.io/navigation/&quot;&gt;Navigation router&lt;/a&gt; and &lt;a href=&quot;http://tjanczuk.github.io/edge/&quot;&gt;Edge.js&lt;/a&gt;. The UI is written in React and the server and data layer are in C#. It&apos;s isomorphic be [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Page {
             get {
