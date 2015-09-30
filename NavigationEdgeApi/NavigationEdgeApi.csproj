@@ -95,9 +95,13 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\PeopleController.cs" />
+    <Compile Include="Controllers\React.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Component.cs" />
+    <Compile Include="Models\Data.cs" />
+    <Compile Include="Models\Person.cs" />
     <Compile Include="Navigation\ControllerSelector.cs" />
     <Compile Include="Navigation\MessageHandler.cs" />
     <Compile Include="Navigation\DataValueProvider.cs" />
@@ -121,7 +125,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
