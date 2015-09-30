@@ -43,12 +43,13 @@ namespace NavigationEdgeApi.Navigation
 		protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
 		{
 			dynamic navigationContext = await context(request.RequestUri.PathAndQuery);
+			var controller = (string) navigationContext.controller;
 			request.Properties["controller"] = navigationContext.controller;
 			request.Properties["data"] = navigationContext.data;
 			var response = await base.SendAsync(request, cancellationToken);
 			if (request.Content.Headers.ContentType == null)
 			{
-				var props = ((ObjectContent)response.Content).Value;
+				var props = new Dictionary<string, object> { { controller.ToLower(), ((ObjectContent)response.Content).Value } };
 				var content = (string)await render(new { url = request.RequestUri.PathAndQuery, props = props });
 				response.Content = new StringContent(string.Format(Resource.Page, content, new JavaScriptSerializer().Serialize(props)));
 				response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");

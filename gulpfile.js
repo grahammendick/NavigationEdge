@@ -6,5 +6,5 @@ gulp.task('build', function(){
 	return browserify('./node/StateInfo.js', { standalone: 'StateInfo'})
 		.bundle()
 		.pipe(source('app.js'))
-		.pipe(gulp.dest('./NavigationEdge'))
+		.pipe(gulp.dest('./NavigationEdgeApi'))
 });

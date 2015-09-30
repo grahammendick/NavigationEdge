@@ -11,10 +11,9 @@ namespace NavigationEdgeApi.Controllers
 {
     public class PersonController : ApiController
     {
-		public Dictionary<string, Person> Get([ModelBinder] int id)
+		public Person Get([ModelBinder] int id)
 		{
-			var person = new Data().GetPerson(id);
-			return new Dictionary<string, Person>() { { "person", person } };
+			return new Data().GetPerson(id);
 		}
 	}
 }

@@ -14,10 +14,9 @@ namespace NavigationEdgeApi.Controllers
 {
     public class PeopleController : ApiController
     {
-		public Dictionary<string, IEnumerable<Person>> Get([ModelBinder] int pageNumber)
+		public IEnumerable<Person> Get([ModelBinder] int pageNumber)
 		{
-			var people = new Data().SearchPeople(pageNumber);
-			return new Dictionary<string, IEnumerable<Person>>() { { "people", people } };
+			return new Data().SearchPeople(pageNumber);
 		}
 	}
 }
