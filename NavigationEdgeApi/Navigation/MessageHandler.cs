@@ -52,6 +52,11 @@ namespace NavigationEdgeApi.Navigation
 				response.Content = new StringContent(string.Format(Resource.Page, content, new JavaScriptSerializer().Serialize(props)));
 				response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
 			}
+			else
+			{
+				response.Headers.Add("Pragma", "no-cache");
+				response.Headers.Add("Cache-Control", "no-cache, no-store, must-revalidate");
+			}
 			return response;
 		}
 	}
