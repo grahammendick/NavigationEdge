@@ -44,7 +44,7 @@ function registerNavigators() {
 		}
 		state.navigated = function(data, asyncData) {
 			var props = {};
-			props[Navigation.StateContext.state.controller.toLowerCase()] = asyncData;
+			props[Navigation.StateContext.state.controller] = asyncData;
 			render(props);
 		}
 	}
