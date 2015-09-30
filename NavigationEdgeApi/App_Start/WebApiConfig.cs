@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Dispatcher;
+using System.Web.Http.ValueProviders;
 
 namespace NavigationEdgeApi
 {
@@ -14,6 +15,7 @@ namespace NavigationEdgeApi
             // Web API configuration and services
 			config.MessageHandlers.Add(new MessageHandler());
 			config.Services.Replace(typeof(IHttpControllerSelector), new ControllerSelector());
+			config.Services.Insert(typeof(ValueProviderFactory), 0, new DataValueProviderFactory());
 
             // Web API routes
             config.MapHttpAttributeRoutes();
