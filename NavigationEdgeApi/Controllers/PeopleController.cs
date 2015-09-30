@@ -14,12 +14,10 @@ namespace NavigationEdgeApi.Controllers
 {
     public class PeopleController : ApiController
     {
-		public async Task<HttpResponseMessage> Get([ModelBinder] int pageNumber)
+		public Dictionary<string, IEnumerable<Person>> Get([ModelBinder] int pageNumber)
 		{
 			var people = new Data().SearchPeople(pageNumber);
-			var props = new Dictionary<string, object>() { { "people", people } };
-			var content = await React.Render(Request.RequestUri.PathAndQuery, props);
-			return null;
+			return new Dictionary<string, IEnumerable<Person>>() { { "people", people } };
 		}
 	}
 }

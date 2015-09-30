@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
@@ -25,12 +26,29 @@ namespace NavigationEdgeApi.Navigation
 			}
 		");
 
+		private Func<object, Task<object>> render = Edge.Func(@"
+			var React = require('react');
+			var Navigation = require('navigation');
+			var StateInfo = require('../../../node/StateInfo');
+				
+			StateInfo.register();
+			return function (data, callback) {
+				Navigation.StateController.navigateLink(data.url);
+				var component = React.createElement(Navigation.StateContext.state.component, data.props);
+				callback(null, React.renderToString(component));
+			}
+		");
+
 		protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
 		{
 			dynamic navigationContext = await context(request.RequestUri.PathAndQuery);
 			request.Properties["controller"] = navigationContext.controller;
 			request.Properties["data"] = navigationContext.data;
-			return await base.SendAsync(request, cancellationToken);
+			var resp = await base.SendAsync(request, cancellationToken);
+			var content = (string) await render(new { url = request.RequestUri.PathAndQuery, props = ((ObjectContent)resp.Content).Value });
+			resp.Content = new StringContent(content);
+			resp.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
+			return resp;
 		}
 	}
 }
