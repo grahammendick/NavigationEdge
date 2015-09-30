@@ -7,6 +7,7 @@ using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Script.Serialization;
 
 namespace NavigationEdgeApi.Navigation
 {
@@ -47,8 +48,9 @@ namespace NavigationEdgeApi.Navigation
 			var response = await base.SendAsync(request, cancellationToken);
 			if (request.Content.Headers.ContentType == null)
 			{
-				var content = (string)await render(new { url = request.RequestUri.PathAndQuery, props = ((ObjectContent)response.Content).Value });
-				response.Content = new StringContent(content);
+				var props = ((ObjectContent)response.Content).Value;
+				var content = (string)await render(new { url = request.RequestUri.PathAndQuery, props = props });
+				response.Content = new StringContent(string.Format(Resource.Page, content, new JavaScriptSerializer().Serialize(props)));
 				response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
 			}
 			return response;
