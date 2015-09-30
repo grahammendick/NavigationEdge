@@ -44,11 +44,14 @@ namespace NavigationEdgeApi.Navigation
 			dynamic navigationContext = await context(request.RequestUri.PathAndQuery);
 			request.Properties["controller"] = navigationContext.controller;
 			request.Properties["data"] = navigationContext.data;
-			var resp = await base.SendAsync(request, cancellationToken);
-			var content = (string) await render(new { url = request.RequestUri.PathAndQuery, props = ((ObjectContent)resp.Content).Value });
-			resp.Content = new StringContent(content);
-			resp.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
-			return resp;
+			var response = await base.SendAsync(request, cancellationToken);
+			if (request.Content.Headers.ContentType == null)
+			{
+				var content = (string)await render(new { url = request.RequestUri.PathAndQuery, props = ((ObjectContent)response.Content).Value });
+				response.Content = new StringContent(content);
+				response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
+			}
+			return response;
 		}
 	}
 }
