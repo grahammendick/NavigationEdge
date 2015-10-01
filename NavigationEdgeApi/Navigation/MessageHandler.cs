@@ -13,7 +13,7 @@ namespace NavigationEdgeApi.Navigation
 	{
 		private Func<object, Task<object>> context = Edge.Func(@"
 			var Navigation = require('navigation');
-			var StateInfo = require('../../../node/StateInfo');
+			var StateInfo = require('../../node/StateInfo');
 				
 			StateInfo.register();
 			return function (data, callback) {
@@ -28,7 +28,7 @@ namespace NavigationEdgeApi.Navigation
 		private Func<object, Task<object>> render = Edge.Func(@"
 			var React = require('react');
 			var Navigation = require('navigation');
-			var StateInfo = require('../../../node/StateInfo');
+			var StateInfo = require('../../node/StateInfo');
 				
 			StateInfo.register();
 			return function (data, callback) {

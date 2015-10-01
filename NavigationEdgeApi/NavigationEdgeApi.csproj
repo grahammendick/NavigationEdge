@@ -92,6 +92,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="node\Component.js" />
+    <Content Include="node\StateInfo.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
