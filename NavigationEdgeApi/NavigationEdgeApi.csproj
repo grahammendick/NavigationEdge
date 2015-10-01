@@ -103,7 +103,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Data.cs" />
+    <Compile Include="Models\PersonRepository.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Navigation\ControllerSelector.cs" />
     <Compile Include="Navigation\MessageHandler.cs" />
