@@ -45,7 +45,8 @@ namespace NavigationEdgeApi.Navigation
 			request.Properties["controller"] = navigationContext.controller;
 			request.Properties["data"] = navigationContext.data;
 			var response = await base.SendAsync(request, cancellationToken);
-			if (request.Content.Headers.ContentType == null)
+			var contentType = request.Content.Headers.ContentType;
+			if (contentType == null || contentType.MediaType != "application/json")
 			{
 				var props = new Dictionary<string, object> { { controller, ((ObjectContent)response.Content).Value } };
 				var content = (string)await render(new { url = request.RequestUri.PathAndQuery, props = props });
