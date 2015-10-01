@@ -54,8 +54,7 @@ namespace NavigationEdgeApi.Navigation
 			}
 			else
 			{
-				response.Headers.Add("Pragma", "no-cache");
-				response.Headers.Add("Cache-Control", "no-cache, no-store, must-revalidate");
+				response.Headers.CacheControl = new CacheControlHeaderValue{ NoCache = true, NoStore = true, MustRevalidate = true };
 			}
 			return response;
 		}
