@@ -42,7 +42,7 @@ namespace NavigationEdgeApi.Navigation
 		{
 			dynamic navigationContext = await context(request.RequestUri.PathAndQuery);
 			var controller = (string) navigationContext.controller;
-			request.Properties["controller"] = navigationContext.controller;
+			request.Properties["controller"] = controller;
 			request.Properties["data"] = navigationContext.data;
 			var response = await base.SendAsync(request, cancellationToken);
 			var contentType = request.Content.Headers.ContentType;
