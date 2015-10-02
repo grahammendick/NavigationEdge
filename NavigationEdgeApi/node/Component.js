@@ -4,7 +4,7 @@ var NavigationLink = NavigationReact.NavigationLink;
 var RefreshLink = NavigationReact.RefreshLink;
 var NavigationBackLink = NavigationReact.NavigationBackLink;
 
-exports.Listing = React.createClass({
+exports.Listing = React.createClass({displayName: "Listing",
 	render: function() {
 		var people = this.props.People.map(function (person) {
 	        return (
@@ -35,7 +35,7 @@ exports.Listing = React.createClass({
 	}
 })
 
-exports.Details = React.createClass({
+exports.Details = React.createClass({displayName: "Details",
     render: function() {
         var person = this.props.Person;
         return (
