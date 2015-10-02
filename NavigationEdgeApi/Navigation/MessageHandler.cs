@@ -11,7 +11,7 @@ namespace NavigationEdgeApi.Navigation
 {
 	public class MessageHandler : DelegatingHandler
 	{
-		private Func<object, Task<object>> context = Edge.Func(@"
+		private Func<object, Task<object>> getContext = Edge.Func(@"
 			var Navigation = require('navigation');
 			var StateInfo = require('../../node/StateInfo');
 				
@@ -40,7 +40,7 @@ namespace NavigationEdgeApi.Navigation
 
 		protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
 		{
-			dynamic navigationContext = await context(request.RequestUri.PathAndQuery);
+			dynamic navigationContext = await getContext(request.RequestUri.PathAndQuery);
 			var controller = (string) navigationContext.controller;
 			request.Properties["controller"] = controller;
 			request.Properties["data"] = navigationContext.data;
