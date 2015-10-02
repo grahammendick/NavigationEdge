@@ -75,9 +75,9 @@ namespace NavigationEdgeApi.Navigation {
         ///    &lt;h1&gt;Navigation Edge&lt;/h1&gt;
         ///    &lt;p&gt;This is an isomorphic web app built using the &lt;a href=&quot;http://grahammendick.github.io/navigation/&quot;&gt;Navigation router&lt;/a&gt; and &lt;a href=&quot;http://tjanczuk.github.io/edge/&quot;&gt;Edge.js&lt;/a&gt;. The UI is written in React and the server and data layer are in C#. It&apos;s isomorphic be [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string Page {
+        internal static string Template {
             get {
-                return ResourceManager.GetString("Page", resourceCulture);
+                return ResourceManager.GetString("Template", resourceCulture);
             }
         }
     }

@@ -32,7 +32,7 @@ namespace NavigationEdgeApi.Navigation
 			{
 				var props = new Dictionary<string, object> { { (string) request.Properties["controller"], ((ObjectContent)response.Content).Value } };
 				var content = (string)await render(new { url = request.RequestUri.PathAndQuery, props = props });
-				response.Content = new StringContent(string.Format(Resource.Page, content, new JavaScriptSerializer().Serialize(props)));
+				response.Content = new StringContent(string.Format(Resource.Template, content, new JavaScriptSerializer().Serialize(props)));
 				response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
 			}
 			else
