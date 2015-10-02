@@ -9,22 +9,8 @@ using System.Web.Script.Serialization;
 
 namespace NavigationEdgeApi.Navigation
 {
-	public class MessageHandler : DelegatingHandler
+	public class RenderHandler : DelegatingHandler
 	{
-		private Func<object, Task<object>> getContext = Edge.Func(@"
-			var Navigation = require('navigation');
-			var StateInfo = require('../../node/StateInfo');
-				
-			StateInfo.register();
-			return function (data, callback) {
-				Navigation.StateController.navigateLink(data);
-				callback(null, { 
-					controller: Navigation.StateContext.state.controller,
-					data: Navigation.StateContext.data 
-				});
-			}
-		");
-
 		private Func<object, Task<object>> render = Edge.Func(@"
 			var React = require('react');
 			var Navigation = require('navigation');
@@ -40,22 +26,18 @@ namespace NavigationEdgeApi.Navigation
 
 		protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
 		{
-			dynamic navigationContext = await getContext(request.RequestUri.PathAndQuery);
-			var controller = (string) navigationContext.controller;
-			request.Properties["controller"] = controller;
-			request.Properties["data"] = navigationContext.data;
 			var response = await base.SendAsync(request, cancellationToken);
 			var contentType = request.Content.Headers.ContentType;
 			if (contentType == null || contentType.MediaType != "application/json")
 			{
-				var props = new Dictionary<string, object> { { controller, ((ObjectContent)response.Content).Value } };
+				var props = new Dictionary<string, object> { { (string) request.Properties["controller"], ((ObjectContent)response.Content).Value } };
 				var content = (string)await render(new { url = request.RequestUri.PathAndQuery, props = props });
 				response.Content = new StringContent(string.Format(Resource.Page, content, new JavaScriptSerializer().Serialize(props)));
 				response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
 			}
 			else
 			{
-				response.Headers.CacheControl = new CacheControlHeaderValue{ NoCache = true, NoStore = true, MustRevalidate = true };
+				response.Headers.CacheControl = new CacheControlHeaderValue { NoCache = true, NoStore = true, MustRevalidate = true };
 			}
 			return response;
 		}

@@ -103,10 +103,11 @@
     </Compile>
     <Compile Include="Models\PersonRepository.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Navigation\ContextHandler.cs" />
     <Compile Include="Navigation\ControllerSelector.cs" />
-    <Compile Include="Navigation\MessageHandler.cs" />
     <Compile Include="Navigation\DataValueProvider.cs" />
     <Compile Include="Navigation\DataValueProviderFactory.cs" />
+    <Compile Include="Navigation\RenderHandler.cs" />
     <Compile Include="Navigation\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

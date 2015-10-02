@@ -13,7 +13,8 @@ namespace NavigationEdgeApi
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-			config.MessageHandlers.Add(new MessageHandler());
+			config.MessageHandlers.Add(new ContextHandler());
+			config.MessageHandlers.Add(new RenderHandler());
 			config.Services.Replace(typeof(IHttpControllerSelector), new ControllerSelector());
 			config.Services.Add(typeof(ValueProviderFactory), new DataValueProviderFactory());
 
