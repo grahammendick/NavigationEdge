@@ -66,9 +66,9 @@ Navigation.settings.historyManager = new Navigation.HTML5HistoryManager();
 exports.register = function(props) {
 	Navigation.StateInfoConfig.build([
 		{ key: 'masterDetails', initial: 'listing', states: [
-			{ key: 'listing', route: '{pageNumber}', controller: 'People', component: Component.Listing, defaults: { pageNumber: 1 }, trackCrumbTrail: false, transitions: [
+			{ key: 'listing', route: '{pageNumber}', name: 'People', component: Component.Listing, defaults: { pageNumber: 1 }, trackCrumbTrail: false, transitions: [
 				{ key: 'select', to: 'details' }]},
-			{ key: 'details', route: 'person/{id}', controller: 'Person', component: Component.Details, defaults: { id: 0 } }]
+			{ key: 'details', route: 'person/{id}', name: 'Person', component: Component.Details, defaults: { id: 0 } }]
 		}
 	]);
 	if (props) {
@@ -103,7 +103,7 @@ function registerNavigators() {
 		}
 		state.navigated = function(data, asyncData) {
 			var props = {};
-			props[Navigation.StateContext.state.controller] = asyncData;
+			props[Navigation.StateContext.state.name] = asyncData;
 			render(props);
 		}
 	}

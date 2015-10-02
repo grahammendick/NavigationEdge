@@ -18,7 +18,7 @@ namespace NavigationEdgeApi.Navigation
 			return new HttpControllerDescriptor
 			{
 				Configuration = request.GetConfiguration(),
-				ControllerType = Type.GetType("NavigationEdgeApi.Controllers." + request.Properties["controller"] + "Controller")
+				ControllerType = Type.GetType("NavigationEdgeApi.Controllers." + request.Properties["name"] + "Controller")
 			};
 		}
 	}

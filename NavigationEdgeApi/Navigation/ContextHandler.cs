@@ -16,7 +16,7 @@ namespace NavigationEdgeApi.Navigation
 			return function (data, callback) {
 				Navigation.StateController.navigateLink(data);
 				callback(null, { 
-					controller: Navigation.StateContext.state.controller,
+					name: Navigation.StateContext.state.name,
 					data: Navigation.StateContext.data 
 				});
 			}
@@ -25,7 +25,7 @@ namespace NavigationEdgeApi.Navigation
 		protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
 		{
 			dynamic navigationContext = await getContext(request.RequestUri.PathAndQuery);
-			request.Properties["controller"] = navigationContext.controller;
+			request.Properties["name"] = navigationContext.name;
 			request.Properties["data"] = navigationContext.data;
 			return await base.SendAsync(request, cancellationToken);
 		}
