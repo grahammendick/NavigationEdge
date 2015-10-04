@@ -12,7 +12,7 @@ exports.register = function(props) {
 			{ key: 'details', route: 'person/{id}', name: 'Person', component: Component.Details, defaults: { id: 0 } }]
 		}
 	]);
-	if (props) {
+	if (props && window.history && window.history.pushState) {
 		Navigation.start();
 		render(props);
 		registerNavigators();
