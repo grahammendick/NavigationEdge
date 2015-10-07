@@ -34,7 +34,7 @@ exports.Listing = React.createClass({displayName: "Listing",
             )
         );
 	}
-})
+});
 
 exports.Details = React.createClass({displayName: "Details",
     render: function() {
@@ -54,7 +54,7 @@ exports.Details = React.createClass({displayName: "Details",
             )
         );
     }
-})
+});
 
 },{"navigation-react":9,"react":194}],2:[function(require,module,exports){
 var React = require('react');

@@ -33,7 +33,7 @@ exports.Listing = React.createClass({
             </div>
         );
 	}
-})
+});
 
 exports.Details = React.createClass({
     render: function() {
@@ -53,4 +53,4 @@ exports.Details = React.createClass({
             </div>
         );
     }
-})
+});
