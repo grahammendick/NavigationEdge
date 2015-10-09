@@ -6,7 +6,7 @@ var NavigationBackLink = NavigationReact.NavigationBackLink;
 
 exports.Listing = React.createClass({displayName: "Listing",
 	render: function() {
-		var people = this.props.People.map(function (person) {
+		var people = this.props.people.map(function (person) {
 	        return (
                 React.createElement("tr", null, 
                     React.createElement("td", null, React.createElement(NavigationLink, {action: "select", toData: { id: person.Id}}, person.Name)), 
@@ -37,7 +37,7 @@ exports.Listing = React.createClass({displayName: "Listing",
 
 exports.Details = React.createClass({displayName: "Details",
     render: function() {
-        var person = this.props.Person;
+        var person = this.props.person;
         return (
             React.createElement("div", {id: "details"}, 
                 React.createElement(NavigationBackLink, {distance: 1}, "People"), 

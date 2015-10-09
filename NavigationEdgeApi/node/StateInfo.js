@@ -6,10 +6,10 @@ Navigation.settings.historyManager = new Navigation.HTML5HistoryManager();
 
 exports.register = function(props) {
 	Navigation.StateInfoConfig.build([
-		{ key: 'masterDetails', initial: 'listing', states: [
-			{ key: 'listing', route: '{pageNumber}', name: 'People', component: Component.Listing, defaults: { pageNumber: 1 }, trackCrumbTrail: false, transitions: [
-				{ key: 'select', to: 'details' }]},
-			{ key: 'details', route: 'person/{id}', name: 'Person', component: Component.Details, defaults: { id: 0 } }]
+		{ key: 'masterDetails', initial: 'people', states: [
+			{ key: 'people', route: '{pageNumber}', component: Component.Listing, defaults: { pageNumber: 1 }, trackCrumbTrail: false, transitions: [
+				{ key: 'select', to: 'person' }]},
+			{ key: 'person', route: 'person/{id}', component: Component.Details, defaults: { id: 0 } }]
 		}
 	]);
 	if (props && window.history && window.history.pushState) {
@@ -44,7 +44,7 @@ function registerNavigators() {
 		}
 		state.navigated = function(data, asyncData) {
 			var props = {};
-			props[Navigation.StateContext.state.name] = asyncData;
+			props[Navigation.StateContext.state.key] = asyncData;
 			render(props);
 		}
 	}
