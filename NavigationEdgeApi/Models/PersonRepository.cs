@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace NavigationEdge.Models
+namespace NavigationEdgeApi.Models
 {
-	public class Data
+	public class PersonRepository
 	{
 		private List<Person> people  = new List<Person>
 		{
@@ -21,14 +21,12 @@ namespace NavigationEdge.Models
 			new Person{ Id = 12, Name = "Emelie Lueilwitz", DateOfBirth = "01/12/1980", Email = "emelie@navigation.com", Phone = "555 0012" }
 		};
 
-		public IEnumerable<Person> SearchPeople(int pageNumber)
+		public IQueryable<Person> People
 		{
-			return people.Skip((pageNumber - 1) * 10).Take(10);
-		}
-
-		public Person GetPerson(int id)
-		{
-			return people.First(p => p.Id == id);
+			get
+			{
+				return people.AsQueryable();
+			}
 		}
 	}
 }

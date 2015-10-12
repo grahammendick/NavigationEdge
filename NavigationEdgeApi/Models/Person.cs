@@ -1,4 +1,4 @@
-﻿namespace NavigationEdge.Models
+﻿namespace NavigationEdgeApi.Models
 {
 	public class Person
 	{

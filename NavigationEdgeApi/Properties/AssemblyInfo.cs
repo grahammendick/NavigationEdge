@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("NavigationEdge")]
+[assembly: AssemblyTitle("NavigationEdgeApi")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("NavigationEdge")]
+[assembly: AssemblyProduct("NavigationEdgeApi")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("fbf1f9a2-13e4-4f5e-a879-d4ed46caf1fe")]
+[assembly: Guid("7b319e04-d218-4298-be81-c75eb7aa01ce")]
 
 // Version information for an assembly consists of the following four values:
 //

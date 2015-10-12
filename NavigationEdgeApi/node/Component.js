@@ -4,8 +4,9 @@ var NavigationLink = NavigationReact.NavigationLink;
 var RefreshLink = NavigationReact.RefreshLink;
 var NavigationBackLink = NavigationReact.NavigationBackLink;
 
-exports.Listing = React.createClass({
+exports.Listing = React.createClass({displayName: "Listing",
 	render: function() {
+		// Renders a list of people from the props.
 		var people = this.props.people.map(function (person) {
 	        return (
                 React.createElement("tr", null, 
@@ -33,10 +34,11 @@ exports.Listing = React.createClass({
             )
         );
 	}
-})
+});
 
-exports.Details = React.createClass({
+exports.Details = React.createClass({displayName: "Details",
     render: function() {
+		// Renders a person's details from the props.
         var person = this.props.person;
         return (
             React.createElement("div", {id: "details"}, 
@@ -53,4 +55,4 @@ exports.Details = React.createClass({
             )
         );
     }
-})
+});

@@ -4,12 +4,14 @@
   "devDependencies": {
     "browserify": "^11.0.1",
     "gulp": "^3.9.0",
+    "gulp-react": "^3.0.1",
     "navigation": "^1.1.0",
     "navigation-react": "^1.1.0",
     "react": "^0.13.3",
     "vinyl-source-stream": "^1.1.0"
   },
   "scripts": {
+    "transform": "gulp transform",
     "build": "gulp build"
   }
 }
