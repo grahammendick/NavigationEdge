@@ -7,4 +7,4 @@ Once you've cloned the repository, you should:
 
 1. Install the node dependencies by running <code>npm install</code>
 2. Install the C# dependencies  by opening and building the NavigationEdge.sln
-3. Press F5 and browse to http://localhost:4065/ to see it in action
+3. Press F5 to see it in action
