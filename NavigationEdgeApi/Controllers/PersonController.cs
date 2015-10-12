@@ -9,6 +9,7 @@ namespace NavigationEdgeApi.Controllers
     {
 		public Person Get([ModelBinder] int id)
 		{
+			// Returns the person used by both client and server rendering.
 			return new PersonRepository().People.First(p => p.Id == id);
 		}
 	}

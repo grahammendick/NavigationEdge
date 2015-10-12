@@ -7,6 +7,7 @@ namespace NavigationEdgeApi.Navigation
 	{
 		public override IValueProvider GetValueProvider(HttpActionContext actionContext)
 		{
+			// Uses the current Route data to create a Value Provider.
 			return new DataValueProvider((dynamic) actionContext.Request.Properties["data"]);
 		}
 	}

@@ -12,15 +12,19 @@ namespace NavigationEdgeApi
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
+            // Registers the Message Handlers that call into Node using Edge.js.
+			// They return the Navigation router context and render Components as HTML.
 			config.MessageHandlers.Add(new ContextHandler());
 			config.MessageHandlers.Add(new RenderHandler());
+			// Replaces the default Controller lookup mechanism.
+			// Uses context set by the ContextHandler to perform the lookup.
 			config.Services.Replace(typeof(IHttpControllerSelector), new ControllerSelector());
+			// Registers a Navigation Route data Value Provider.
+			// Uses context set by the ContextHandler to source its data.
 			config.Services.Add(typeof(ValueProviderFactory), new DataValueProviderFactory());
 
-            // Web API routes
-            config.MapHttpAttributeRoutes();
-
+			// Registers just one catch-all route.
+			// The Navigation router configuration supplies the Web Api routes.
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "{*url}"

@@ -6,6 +6,7 @@ var NavigationBackLink = NavigationReact.NavigationBackLink;
 
 exports.Listing = React.createClass({displayName: "Listing",
 	render: function() {
+		// Renders a list of people from the props.
 		var people = this.props.people.map(function (person) {
 	        return (
                 React.createElement("tr", null, 
@@ -37,6 +38,7 @@ exports.Listing = React.createClass({displayName: "Listing",
 
 exports.Details = React.createClass({displayName: "Details",
     render: function() {
+		// Renders a person's details from the props.
         var person = this.props.person;
         return (
             React.createElement("div", {id: "details"}, 

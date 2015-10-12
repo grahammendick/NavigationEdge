@@ -11,6 +11,7 @@ namespace NavigationEdgeApi.Navigation
 
 		public DataValueProvider(dynamic data)
 		{
+			// Creates a value provider result for each item of Route data.
 			foreach (var item in data)
 			{
 				_values[item.Key] = new ValueProviderResult(item.Value, Convert.ToString(item.Value, CultureInfo.InvariantCulture), CultureInfo.InvariantCulture);

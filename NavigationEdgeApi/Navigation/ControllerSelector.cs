@@ -15,6 +15,7 @@ namespace NavigationEdgeApi.Navigation
 
 		public HttpControllerDescriptor SelectController(HttpRequestMessage request)
 		{
+			// Uses the current State key to create the Web Api Controller Type
 			return new HttpControllerDescriptor
 			{
 				Configuration = request.GetConfiguration(),

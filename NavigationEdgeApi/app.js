@@ -7,6 +7,7 @@ var NavigationBackLink = NavigationReact.NavigationBackLink;
 
 exports.Listing = React.createClass({displayName: "Listing",
 	render: function() {
+		// Renders a list of people from the props.
 		var people = this.props.people.map(function (person) {
 	        return (
                 React.createElement("tr", null, 
@@ -38,6 +39,7 @@ exports.Listing = React.createClass({displayName: "Listing",
 
 exports.Details = React.createClass({displayName: "Details",
     render: function() {
+		// Renders a person's details from the props.
         var person = this.props.person;
         return (
             React.createElement("div", {id: "details"}, 
@@ -63,7 +65,9 @@ var Component = require('./Component');
 
 Navigation.settings.historyManager = new Navigation.HTML5HistoryManager();
 
-exports.register = function(props) {
+exports.register = function (props) {
+	// Configures the Navigation router with the two routes.
+	// This configuration is also used server side to power the JSON Api.
 	Navigation.StateInfoConfig.build([
 		{ key: 'masterDetails', initial: 'people', states: [
 			{ key: 'people', route: '{pageNumber}', component: Component.Listing, defaults: { pageNumber: 1 }, trackCrumbTrail: false, transitions: [
@@ -71,7 +75,9 @@ exports.register = function(props) {
 			{ key: 'person', route: 'person/{id}', component: Component.Details, defaults: { id: 0 } }]
 		}
 	]);
-	if (props && window.history && window.history.pushState) {
+	// Client renders so React can catch up with the server rendered content.
+	// Browsers that don't support HTML5 History won't get this progressive enhancement.
+	if (props && window.history && window.history.pushState && window.XMLHttpRequest) {
 		Navigation.start();
 		render(props);
 		registerNavigators();
@@ -79,6 +85,7 @@ exports.register = function(props) {
 }
 
 function render(props) {
+	// Finds the State's Component and renders it into the HTML content placeholder.
 	var component = React.createElement(Navigation.StateContext.state.component, props);
 	React.render(
 		component,
@@ -87,6 +94,9 @@ function render(props) {
 }
 	
 function registerNavigators() {
+	// Adds navigating and navigated functions to the people and person States.
+	// The navigating function issues an Ajax call for requested Url to get the JSON data.
+	// The navigated function uses the JSON data to create props to render the State's Component.
 	var states = Navigation.StateInfoConfig.dialogs.masterDetails.states;
 	for(var key in states) {
 		var state = states[key];
