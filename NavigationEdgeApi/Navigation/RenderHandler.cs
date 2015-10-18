@@ -32,6 +32,7 @@ namespace NavigationEdgeApi.Navigation
 		{
 			var response = await base.SendAsync(request, cancellationToken);
 			var contentType = request.Content.Headers.ContentType;
+			response.Headers.Vary.Add("Content-Type");
 			// Returns HTML if it's not an Ajax request.
 			if (contentType == null || contentType.MediaType != "application/json")
 			{
@@ -43,10 +44,6 @@ namespace NavigationEdgeApi.Navigation
 				// Includes the props in the response so React can render when the page loads.
 				response.Content = new StringContent(string.Format(Resource.Template, content, new JavaScriptSerializer().Serialize(props)));
 				response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
-			}
-			else
-			{
-				response.Headers.CacheControl = new CacheControlHeaderValue { NoCache = true, NoStore = true, MustRevalidate = true };
 			}
 			return response;
 		}
