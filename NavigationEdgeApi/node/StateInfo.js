@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Navigation = require('navigation');
 var Component = require('./Component');
 
@@ -26,7 +27,7 @@ exports.register = function (props) {
 function render(props) {
 	// Finds the State's Component and renders it into the HTML content placeholder.
 	var component = React.createElement(Navigation.StateContext.state.component, props);
-	React.render(
+	ReactDOM.render(
 		component,
 		document.getElementById('content')
 	);		

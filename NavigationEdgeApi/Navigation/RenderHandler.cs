@@ -13,6 +13,7 @@ namespace NavigationEdgeApi.Navigation
 	{
 		private Func<object, Task<object>> render = Edge.Func(@"
 			var React = require('react');
+			var ReactDOMServer = require('react-dom/server');
 			var Navigation = require('navigation');
 			var StateInfo = require('../../node/StateInfo');
 
@@ -24,7 +25,7 @@ namespace NavigationEdgeApi.Navigation
 				// Creates the State's Component from the props.
 				var component = React.createElement(Navigation.StateContext.state.component, data.props);
 				// Returns the rendered HTML.
-				callback(null, React.renderToString(component));
+				callback(null, ReactDOMServer.renderToString(component));
 			}
 		");
 
