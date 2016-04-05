@@ -134,7 +134,7 @@
     &lt;div id="content"&gt;{0}&lt;/div&gt;
     &lt;script src="/app.js"&gt;&lt;/script&gt;
     &lt;script&gt;
-        StateInfo.createStateNavigator({1});
+        Router.createStateNavigator({1});
     &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;</value>

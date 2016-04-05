@@ -15,10 +15,10 @@ namespace NavigationEdgeApi.Navigation
 			var React = require('react');
 			var ReactDOMServer = require('react-dom/server');
 			var Navigation = require('navigation');
-			var StateInfo = require('../../node/StateInfo');
+			var Router = require('../../node/Router');
 
 			// Creates the State Navigator.
-			var stateNavigator = StateInfo.createStateNavigator();
+			var stateNavigator = Router.createStateNavigator();
 			return function (data, callback) {
 				// Starts the State Navigator from the current Url.
 				stateNavigator.start(data.url);
