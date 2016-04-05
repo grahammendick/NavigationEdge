@@ -5,12 +5,19 @@ var RefreshLink = NavigationReact.RefreshLink;
 var NavigationBackLink = NavigationReact.NavigationBackLink;
 
 exports.Listing = React.createClass({
-	render: function() {
-		// Renders a list of people from the props.
-		var people = this.props.people.map(function (person) {
-	        return (
-                <tr>
-                    <td><NavigationLink action="select" toData={{ id: person.Id }}>{person.Name}</NavigationLink></td>
+    render: function() {
+        var stateNavigator = this.props.stateNavigator;
+        // Renders a list of people from the props.
+        var people = this.props.people.map(function (person) {
+            return (
+                <tr key={person.Id}>
+                    <td>
+						<NavigationLink
+							stateKey="person"
+							navigationData={{id: person.Id}}
+							stateNavigator={stateNavigator}>
+							{person.Name}
+						</NavigationLink></td>
                     <td>{person.DateOfBirth}</td>
                 </tr>
             );
@@ -28,21 +35,35 @@ exports.Listing = React.createClass({
                 </table>
                 <div id="pager">
                     Go to page
-                    <RefreshLink toData={{ pageNumber: 1 }} disableActive={true}>1</RefreshLink>
-                    <RefreshLink toData={{ pageNumber: 2 }} disableActive={true}>2</RefreshLink>
+                    <RefreshLink
+						navigationData={{ pageNumber: 1 }}
+						disableActive={true}
+						stateNavigator={stateNavigator}>
+						1
+					</RefreshLink>
+                    <RefreshLink
+						navigationData={{ pageNumber: 2 }}
+						disableActive={true}
+						stateNavigator={stateNavigator}>
+						2
+					</RefreshLink>
                 </div>
             </div>
         );
-	}
+    }
 });
 
 exports.Details = React.createClass({
     render: function() {
-		// Renders a person's details from the props.
+        // Renders a person's details from the props.
         var person = this.props.person;
         return (
             <div id="details">
-                <NavigationBackLink distance={1}>People</NavigationBackLink>
+                <NavigationBackLink
+					distance={1}
+					stateNavigator={this.props.stateNavigator}>
+					People
+				</NavigationBackLink>
                 <div id="info">
                     <h2>{person.Name}</h2>
                     <div className="label">Date of Birth</div>

@@ -17,13 +17,14 @@ namespace NavigationEdgeApi.Navigation
 			var Navigation = require('navigation');
 			var StateInfo = require('../../node/StateInfo');
 
-			// Registers the Navigation router configuration.
-			StateInfo.register();
+			// Creates the State Navigator.
+			var stateNavigator = StateInfo.createStateNavigator();
 			return function (data, callback) {
-				// Sets the Navigation router context from the current Url.
-				Navigation.StateController.navigateLink(data.url);
+				// Starts the State Navigator from the current Url.
+				stateNavigator.start(data.url);
+				data.props.stateNavigator = stateNavigator;
 				// Creates the State's Component from the props.
-				var component = React.createElement(Navigation.StateContext.state.component, data.props);
+				var component = React.createElement(stateNavigator.stateContext.state.component, data.props);
 				// Returns the rendered HTML.
 				callback(null, ReactDOMServer.renderToString(component));
 			}
