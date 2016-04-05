@@ -10,7 +10,7 @@ gulp.task('transform', function(){
 });
 
 gulp.task('build', ['transform'], function(){
-	return browserify('./NavigationEdgeApi/node/StateInfo.js', { standalone: 'StateInfo'})
+	return browserify('./NavigationEdgeApi/node/Router.js', { standalone: 'Router'})
 		.bundle()
 		.pipe(source('app.js'))
 		.pipe(gulp.dest('./NavigationEdgeApi'))

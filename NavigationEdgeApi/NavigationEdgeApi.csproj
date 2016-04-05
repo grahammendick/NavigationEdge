@@ -91,7 +91,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Global.asax" />
-    <Content Include="node\StateInfo.js" />
+    <Content Include="node\Router.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +136,7 @@
     <EmbeddedResource Include="Navigation\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

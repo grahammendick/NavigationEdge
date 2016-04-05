@@ -3,43 +3,39 @@ var ReactDOM = require('react-dom');
 var Navigation = require('navigation');
 var Component = require('./Component');
 
-Navigation.settings.historyManager = new Navigation.HTML5HistoryManager();
-
-exports.register = function (props) {
+exports.createStateNavigator = function (props) {
 	// Configures the Navigation router with the two routes.
 	// This configuration is also used server side to power the JSON Api.
-	Navigation.StateInfoConfig.build([
-		{ key: 'masterDetails', initial: 'people', states: [
-			{ key: 'people', route: '{pageNumber}', component: Component.Listing, defaults: { pageNumber: 1 }, trackCrumbTrail: false, transitions: [
-				{ key: 'select', to: 'person' }]},
-			{ key: 'person', route: 'person/{id}', component: Component.Details, defaults: { id: 0 } }]
-		}
-	]);
+	var stateNavigator = new Navigation.StateNavigator([
+		{key: 'people', route: '{pageNumber?}', component: Component.Listing, defaults: {pageNumber: 1}},
+		{key: 'person', route: 'person/{id}', component: Component.Details, defaults: {id: 0}, trackCrumbTrail: true}
+	], new Navigation.HTML5HistoryManager());
 	// Client renders so React can catch up with the server rendered content.
 	// Browsers that don't support HTML5 History won't get this progressive enhancement.
 	if (props && window.history && window.history.pushState && window.XMLHttpRequest) {
-		Navigation.start();
-		render(props);
-		registerNavigators();
+		stateNavigator.start();
+		render(stateNavigator, props);
+		registerControllers(stateNavigator);
 	}
+	return stateNavigator;
 }
 
-function render(props) {
+function render(stateNavigator, props) {
 	// Finds the State's Component and renders it into the HTML content placeholder.
-	var component = React.createElement(Navigation.StateContext.state.component, props);
+	props.stateNavigator = stateNavigator;
+	var component = React.createElement(stateNavigator.stateContext.state.component, props);
 	ReactDOM.render(
 		component,
 		document.getElementById('content')
 	);		
 }
 	
-function registerNavigators() {
+function registerControllers(stateNavigator) {
 	// Adds navigating and navigated functions to the people and person States.
 	// The navigating function issues an Ajax call for requested Url to get the JSON data.
 	// The navigated function uses the JSON data to create props to render the State's Component.
-	var states = Navigation.StateInfoConfig.dialogs.masterDetails.states;
-	for(var key in states) {
-		var state = states[key];
+	for (var key in stateNavigator.states) {
+		var state = stateNavigator.states[key];
 		state.navigating = function(data, url, navigate) {
 			var req = new XMLHttpRequest();
 			req.onreadystatechange = function() {
@@ -53,8 +49,8 @@ function registerNavigators() {
 		}
 		state.navigated = function(data, asyncData) {
 			var props = {};
-			props[Navigation.StateContext.state.key] = asyncData;
-			render(props);
+			props[stateNavigator.stateContext.state.key] = asyncData;
+			render(stateNavigator, props);
 		}
 	}
 }

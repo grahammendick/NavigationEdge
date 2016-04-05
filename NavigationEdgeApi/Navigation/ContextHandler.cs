@@ -10,17 +10,17 @@ namespace NavigationEdgeApi.Navigation
 	{
 		private Func<object, Task<object>> getContext = Edge.Func(@"
 			var Navigation = require('navigation');
-			var StateInfo = require('../../node/StateInfo');
+			var Router = require('../../node/Router');
 
-			// Registers the Navigation router configuration.
-			StateInfo.register();
+			// Creates the State Navigator.
+			var stateNavigator = Router.createStateNavigator();
 			return function (data, callback) {
-				// Sets the Navigation router context from the current Url.
-				Navigation.StateController.navigateLink(data);
-				// Returns the State key and Route data from the Navigation router context.
+				// Starts the State Navigator from the current Url.
+				stateNavigator.start(data);
+				// Returns the State key and Route data from the State Navigator context.
 				callback(null, { 
-					key: Navigation.StateContext.state.key,
-					data: Navigation.StateContext.data 
+					key: stateNavigator.stateContext.state.key,
+					data: stateNavigator.stateContext.data 
 				});
 			}
 		");
